@@ -31,15 +31,31 @@ public:
 		temp.setvalue(feet + o.feet, inches + o.inches);
 		return temp;
 	}
+	CFeet operator -(CFeet&o)
+	{
+		CFeet temp;
+		temp.Setvalue(feet - o.feet, inches- o.inches);
+		return temp;
+	}
+	void Setvalue(int foot, int inch)
+	{   
+		feet = foot + inch / 12;
+		inches = inch % 12;
+	}
 };
 
 int main()
 {
+	int x, y, z;
+	int x1, y1, z1;
+	cin >> x >> y;
+	cin >> x1 >> y1;
 	CFeet A, B, C;
-	A.setvalue(10, 10);
-	B.setvalue(10, 10);
+	A.Setvalue(x,y);
+	B.Setvalue(x1,y1);
 	C = A + B;
 	C.display();
+	C = A - B;
 	C.display();
 	return 0;
 }
