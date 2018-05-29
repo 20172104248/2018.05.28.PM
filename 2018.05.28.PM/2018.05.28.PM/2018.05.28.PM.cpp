@@ -12,51 +12,53 @@ private:
 public:
 	void setvalue(int foot, int inch)
 	{
-		feet = foot + inch / 12;
-		inches = inch % 12;
+		feet = foot;
+		inches = inch;
 	}
 	void display()
 	{
-		cout << feet << " feet " << inches << "inches" << endl;
-	}
-	CFeet add(CFeet&o)
-	{
-		CFeet temp;
-		temp.setvalue(feet + o.feet, inches + o.inches);
-		return temp;
-	}
-	CFeet operator +(CFeet&o)
-	{
-		CFeet temp;
-		temp.setvalue(feet + o.feet, inches + o.inches);
-		return temp;
+		cout <<feet << " feet " << inches << "inches" << endl;
 	}
 	CFeet operator -(CFeet&o)
 	{
+		int X;
+		inches = inches+feet*12;
+		o.inches = o.inches + o.feet * 12;
+		X=inches-o.inches;
 		CFeet temp;
-		temp.Setvalue(feet - o.feet, inches- o.inches);
+		if (X<0)
+		{  
+			if (X<=-12)
+			{
+				X=-1*X;
+				temp.setvalue(-1*(X / 12), X% 12);
+			}
+			else
+			{
+				temp.setvalue(X / 12,(X % 12));
+			}
+		}
+		else
+		{
+			temp.setvalue(X / 12, X % 12);
+		}
 		return temp;
-	}
-	void Setvalue(int foot, int inch)
-	{   
-		feet = foot + inch / 12;
-		inches = inch % 12;
 	}
 };
 
 int main()
-{
-	int x, y, z;
-	int x1, y1, z1;
-	cin >> x >> y;
-	cin >> x1 >> y1;
+{   
+	int x1, x2, y1, y2;
 	CFeet A, B, C;
-	A.Setvalue(x,y);
-	B.Setvalue(x1,y1);
-	C = A + B;
-	C.display();
+	cin >> x2 >> y2;
+	A.setvalue(x2,y2);
+	cin >> x1 >> y1;
+	B.setvalue(x1,y1);
 	C = A - B;
 	C.display();
 	return 0;
 }
+
+
+
 
